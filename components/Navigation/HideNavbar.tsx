@@ -23,7 +23,7 @@ function HideOnScroll(props: Props) {
   );
 }
 
-export default function Navbar() {
+export default function HideNavbar() {
   return (
     <HideOnScroll>
       <AppBar className="bg-neutral/0 mt-2 lg:mt-4 shadow-none">

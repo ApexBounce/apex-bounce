@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="min-h-[1200px]">
-      <div className="relative h-[50dvh] lg:h-[75dvh]">
+      <div className="relative h-[33dvh] lg:h-[75dvh]">
         <Image
           src={'/images/inflatables_main.jpg'}
           alt="Kids playing on an inflatable"
@@ -22,11 +22,10 @@ export default function Home() {
         <Overlay>
           <Typography
             component="h1"
-            className="text-5xl lg:text-9xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 uppercase"
+            className="text-5xl lg:text-9xl absolute top-1/2 left-1/4 transform -translate-x-1/4 -translate-y-1/2 uppercase"
           >
-            Defy Gravity
+            Defy Gravity with Apex
           </Typography>
-          ;
         </Overlay>
       </div>
     </main>
