@@ -16,7 +16,7 @@ const NavList = (props: Props) => {
       role="presentation"
       onClick={() => props.onCLick(false)}
     >
-      <div className="mt-[56px] lg:mt-[64px] grid grid-flow-row lg:grid-flow-col bg-secondary text-base-100">
+      <div className="mt-[64px] grid grid-flow-row lg:grid-flow-col bg-secondary text-base-100">
         {APP_ROUTES.map((appRoute) => (
           <List key={appRoute.groupTitle} className="py-0">
             {appRoute.routes.map((option, index) => (

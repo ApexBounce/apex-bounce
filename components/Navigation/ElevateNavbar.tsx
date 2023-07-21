@@ -36,7 +36,7 @@ export default function ElevateAppBar() {
     <>
       <ElevationScroll>
         <AppBar className="sticky z-[1201] bg-gradient-to-r from-primary via-accent to-secondary text-base-100">
-          <Toolbar className="grid grid-flow-col justify-between uppercase">
+          <Toolbar className="grid grid-flow-col h-16 justify-between uppercase">
             <Typography variant="h6" component="div">
               Apex Bounce
             </Typography>
@@ -46,12 +46,8 @@ export default function ElevateAppBar() {
               color="inherit"
               aria-label="menu"
             >
-              <Fade in={!isOpen} className="absolute inset-0">
-                <MenuIcon />
-              </Fade>
-              <Fade in={isOpen} className="absolute inset-0">
-                <CloseIcon />
-              </Fade>
+              {!isOpen && <MenuIcon className="text-3xl" />}
+              {isOpen && <CloseIcon className="text-3xl" />}
             </IconButton>
           </Toolbar>
         </AppBar>
