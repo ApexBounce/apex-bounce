@@ -13,7 +13,7 @@ export default function Home() {
     <main className="min-h-[1200px]">
       <div className="relative h-[33dvh] lg:h-[75dvh]">
         <Image
-          src={'/images/inflatables_main.jpg'}
+          src={'/images/home_bg.jpg'}
           alt="Kids playing on an inflatable"
           fill
           priority
