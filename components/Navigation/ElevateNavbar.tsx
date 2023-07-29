@@ -7,7 +7,6 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
 import { cloneElement, useState } from 'react';
 import Drawer from '@mui/material/Drawer';
-import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import NavList from './NavList';

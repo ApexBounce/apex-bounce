@@ -1,4 +1,7 @@
+'use client';
+
 import Overlay from '@/components/Overlay/Overlay';
+import { sanityClient } from '@/sanity/lib/client';
 import { Typography } from '@mui/material';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -9,6 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const query = `*[_type == "organization"]`;
+  const orgInfo = sanityClient.fetch(query);
+  console.log('#################');
+  console.log({ orgInfo });
   return (
     <main className="min-h-[1200px]">
       <div className="relative h-[33dvh] lg:h-[75dvh]">
@@ -31,3 +38,27 @@ export default function Home() {
     </main>
   );
 }
+
+// export const getServerSideProps = async (pageContext: any) => {
+//   const query = `*[_type == "organization"]`;
+//   const orgInfo = await sanityClient.fetch(query);
+
+//   return {
+//     props: {
+//       orgInfo,
+//     },
+//   };
+// };
+
+// export async function getStaticProps() {
+//   const query = `*[_type == "organization"]`;
+//   const orgInfo = await sanityClient.fetch(query);
+
+//   console.log({ orgInfo });
+
+//   return {
+//     props: {
+//       orgInfo,
+//     },
+//   };
+// }
