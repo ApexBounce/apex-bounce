@@ -1,21 +1,17 @@
-'use client';
-
 import Overlay from '@/components/Overlay/Overlay';
-import { sanityClient } from '@/sanity/lib/client';
+import getOrganizationInfo from '@/sanity/lib/getOrganization';
 import { Typography } from '@mui/material';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
+const orgInfo = await getOrganizationInfo();
+
 export const metadata: Metadata = {
-  title: 'Apex Bounce',
-  description: 'Apex Bounce home page',
+  title: orgInfo.name,
+  description: `${orgInfo.name} Home page.`,
 };
 
-export default function Home() {
-  const query = `*[_type == "organization"]`;
-  const orgInfo = sanityClient.fetch(query);
-  console.log('#################');
-  console.log({ orgInfo });
+export default async function Home() {
   return (
     <main className="min-h-[1200px]">
       <div className="relative h-[33dvh] lg:h-[75dvh]">
@@ -31,34 +27,10 @@ export default function Home() {
             component="h1"
             className="text-5xl lg:text-9xl absolute top-1/2 left-1/4 transform -translate-x-1/4 -translate-y-1/2 uppercase"
           >
-            Defy Gravity with Apex
+            {orgInfo.slogan}
           </Typography>
         </Overlay>
       </div>
     </main>
   );
 }
-
-// export const getServerSideProps = async (pageContext: any) => {
-//   const query = `*[_type == "organization"]`;
-//   const orgInfo = await sanityClient.fetch(query);
-
-//   return {
-//     props: {
-//       orgInfo,
-//     },
-//   };
-// };
-
-// export async function getStaticProps() {
-//   const query = `*[_type == "organization"]`;
-//   const orgInfo = await sanityClient.fetch(query);
-
-//   console.log({ orgInfo });
-
-//   return {
-//     props: {
-//       orgInfo,
-//     },
-//   };
-// }

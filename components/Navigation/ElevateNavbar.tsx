@@ -15,6 +15,10 @@ interface Props {
   children: React.ReactElement;
 }
 
+type NavbarProps = {
+  text: string;
+};
+
 function ElevationScroll(props: Props) {
   const { children } = props;
   const trigger = useScrollTrigger({
@@ -27,7 +31,7 @@ function ElevationScroll(props: Props) {
   });
 }
 
-export default function ElevateAppBar() {
+export default function ElevateAppBar(props: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (state: boolean) => setIsOpen(state);
 
@@ -37,7 +41,7 @@ export default function ElevateAppBar() {
         <AppBar className="sticky z-[1201] bg-gradient-to-r from-primary via-accent to-secondary text-base-100">
           <Toolbar className="grid grid-flow-col h-16 justify-between uppercase">
             <Typography variant="h6" component="div">
-              Apex Bounce
+              {props.text}
             </Typography>
             <IconButton
               onClick={() => toggleDrawer(!isOpen)}
