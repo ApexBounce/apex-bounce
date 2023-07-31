@@ -8,6 +8,7 @@ import '@fontsource/roboto/700.css';
 import Navbar from '@/components/Navigation/ElevateNavbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import getOrganizationInfo from '@/sanity/lib/getOrganization';
+import Footer from '@/components/Footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
         <CssBaseline />
         <Navbar text={orgInfo.name} />
         {children}
+        <Footer organizationData={orgInfo} />
       </body>
     </html>
   );
