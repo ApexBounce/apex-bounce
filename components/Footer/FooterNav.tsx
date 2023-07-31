@@ -14,9 +14,14 @@ const FooterNav = () => {
       </Typography>
       <div className="grid grid-flow-row lg:grid-cols-2 gap-x-4 gap-y-2">
         {APP_ROUTES.map((group) => (
-          <div className="grid grid-flow-row gap-2 h-fit">
+          <div
+            key={group.groupTitle}
+            className="grid grid-flow-row gap-2 h-fit"
+          >
             {group.routes.map((route) => (
-              <Link href={route.route}>{route.title}</Link>
+              <Link key={route.title} href={route.route}>
+                {route.title}
+              </Link>
             ))}
           </div>
         ))}
