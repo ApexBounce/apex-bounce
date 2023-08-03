@@ -38,7 +38,7 @@ export default function ElevateAppBar(props: NavbarProps) {
   return (
     <>
       <ElevationScroll>
-        <AppBar className="sticky z-[1201] bg-gradient-to-r from-primary via-accent to-secondary text-base-100">
+        <AppBar className="sticky z-[1201] gradient-bg text-base-100">
           <Toolbar className="grid grid-flow-col h-16 justify-between uppercase">
             <Typography variant="h6" component="div">
               {props.text}

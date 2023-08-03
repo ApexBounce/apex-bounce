@@ -25,3 +25,23 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.gradient-bg {
+  background-image: radial-gradient(
+    circle at center left,
+    rgb(193, 2, 6) 0%,
+    rgb(193, 2, 6) 6%,
+    rgb(167, 6, 11) 6%,
+    rgb(167, 6, 11) 27%,
+    rgb(140, 10, 16) 27%,
+    rgb(140, 10, 16) 42%,
+    rgb(113, 14, 21) 42%,
+    rgb(113, 14, 21) 63%,
+    rgb(86, 18, 26) 63%,
+    rgb(86, 18, 26) 64%,
+    rgb(59, 22, 31) 64%,
+    rgb(59, 22, 31) 71%,
+    rgb(33, 29, 33) 71%,
+    rgb(33, 29, 33) 100%
+  );
+}

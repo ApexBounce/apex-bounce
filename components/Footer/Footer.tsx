@@ -8,7 +8,7 @@ type Props = {
 
 const Footer = (props: Props) => {
   return (
-    <footer className="grid grid-flow-row lg:grid-flow-col gap-8 justify-evenly px-4 py-8 lg:px-6 lg:py-10 bg-gradient-to-r from-primary via-accent to-secondary text-neutral">
+    <footer className="gradient-bg bg-fixed grid grid-flow-row lg:grid-flow-col gap-8 justify-evenly px-4 py-8 lg:px-6 lg:py-10 text-neutral">
       <FooterOrgInfo organizationData={props.organizationData} />
       <FooterNav />
     </footer>
