@@ -5,7 +5,7 @@ import Link from 'next/link';
 function StudioNavbar(props: any) {
   return (
     <div>
-      <div className="w-screen h-16 grid grid-flow-col items-center px-4 justify-between bg-gradient-to-r from-primary via-accent to-secondary text-base-100">
+      <div className="w-screen h-16 grid grid-flow-col items-center px-4 justify-between gradient-bg text-base-100">
         <Link href={'/'}>
           <Typography
             component="p"

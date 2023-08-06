@@ -1,4 +1,4 @@
-export interface OrganizationData {
+export type OrganizationData = {
   _rev: string;
   _type: 'organization';
   operatingSchedule: {
@@ -35,4 +35,15 @@ export interface OrganizationData {
   _createdAt: string;
   name: string;
   email: string;
-}
+};
+
+export type RentalListing = {
+  _id: string;
+  category: string;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  available: boolean;
+  features: string[];
+};
