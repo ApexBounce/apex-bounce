@@ -10,6 +10,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import NavList from './NavList';
+import Link from 'next/link';
 
 interface Props {
   children: React.ReactElement;
@@ -40,9 +41,11 @@ export default function ElevateAppBar(props: NavbarProps) {
       <ElevationScroll>
         <AppBar className="sticky z-[1201] gradient-bg text-base-100">
           <Toolbar className="grid grid-flow-col h-16 justify-between uppercase">
-            <Typography variant="h6" component="div">
-              {props.text}
-            </Typography>
+            <Link href="/">
+              <Typography variant="h6" component="div">
+                {props.text}
+              </Typography>
+            </Link>
             <IconButton
               onClick={() => toggleDrawer(!isOpen)}
               size="large"

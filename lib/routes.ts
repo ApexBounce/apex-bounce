@@ -7,8 +7,8 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import QuizIcon from '@mui/icons-material/Quiz';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import GroupIcon from '@mui/icons-material/Group';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import HomeIcon from '@mui/icons-material/Home';
 
 export type Routes = {
   title: string;
@@ -26,17 +26,37 @@ export type AppRoutes = {
 
 export const APP_ROUTES: AppRoutes[] = [
   {
-    groupTitle: 'group 1',
+    groupTitle: 'Services',
     routes: [
+      {
+        title: 'Home',
+        route: '/',
+        icon: HomeIcon,
+      },
       {
         title: 'Rental Listings',
         route: '/rental-listings',
         icon: FormatListNumberedIcon,
       },
       {
-        title: 'Customer Testimonials',
-        route: '/customer-testimonials',
-        icon: GroupIcon,
+        title: 'Delivery & Setup',
+        route: '/delivery-setup-process',
+        icon: LocalShippingIcon,
+      },
+    ],
+  },
+  {
+    groupTitle: 'General Info',
+    routes: [
+      {
+        title: 'FAQs',
+        route: '/faq',
+        icon: QuizIcon,
+      },
+      {
+        title: 'Event Planning Tips',
+        route: '/event-planning-tips',
+        icon: EventAvailableIcon,
       },
       {
         title: 'Safety Information',
@@ -46,32 +66,12 @@ export const APP_ROUTES: AppRoutes[] = [
     ],
   },
   {
-    groupTitle: 'group 2',
+    groupTitle: 'Company Info',
     routes: [
       {
-        title: 'Event Planning Tips',
-        route: '/event-planning-tips',
-        icon: EventAvailableIcon,
-      },
-      {
-        title: 'FAQs',
-        route: '/faq',
-        icon: QuizIcon,
-      },
-      {
-        title: 'Gallery and Videos',
+        title: 'Gallery',
         route: '/gallery',
         icon: CollectionsIcon,
-      },
-    ],
-  },
-  {
-    groupTitle: 'group 3',
-    routes: [
-      {
-        title: 'Delivery and Setup Process',
-        route: '/delivery-setup-process',
-        icon: LocalShippingIcon,
       },
       {
         title: 'About Us',
