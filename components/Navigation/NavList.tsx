@@ -24,7 +24,7 @@ const NavList = (props: Props) => {
       onClick={() => props.onCLick(false)}
     >
       <div className="mt-[64px] bg-secondary text-base-100">
-        <div className="grid grid-flow-row lg:grid-flow-col gap-y-4 py-4">
+        <div className="grid grid-flow-row lg:grid-flow-col gap-y-2 py-4">
           {APP_ROUTES.map((appRoute) => (
             <List key={appRoute.groupTitle} className="grid gap-2 py-0">
               {appRoute.routes.map((option, index) => (
