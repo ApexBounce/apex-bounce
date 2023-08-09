@@ -34,8 +34,8 @@ export const APP_ROUTES: AppRoutes[] = [
         icon: HomeIcon,
       },
       {
-        title: 'Rental Listings',
-        route: '/rental-listings',
+        title: 'Rentals',
+        route: '/rentals',
         icon: FormatListNumberedIcon,
       },
       {

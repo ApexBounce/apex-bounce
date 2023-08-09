@@ -19,10 +19,6 @@ export const metadata: Metadata = {
   description: `Rental listings.`,
 };
 
-const getLink = (title: string): string => {
-  return title.trim().toLowerCase().replaceAll(' ', '-');
-};
-
 const groupByCategory = (
   items: RentalListing[]
 ): {
@@ -84,10 +80,7 @@ export default async function RentalListings() {
               gap={16}
             >
               {group.items.map((item) => (
-                <Link
-                  key={item.title}
-                  href={`rental-listings/${getLink(item.title)}`}
-                >
+                <Link key={item.title} href={`rentals/${item._id}`}>
                   <ImageListItem className="group w-[300px] max-w-[80vw]">
                     <div className="relative overflow-hidden w-full h-[250px]">
                       <Image

@@ -18,6 +18,7 @@ module.exports = {
       error: '#f87272',
       black: '#000',
       white: '#fff',
+      gold: '#C49D31',
     },
     extend: {
       backgroundImage: {
@@ -27,5 +28,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

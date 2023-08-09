@@ -15,7 +15,12 @@ type Props = {
 const NavList = (props: Props) => {
   const pathname = usePathname();
 
-  const isActiveRoute = (route: string) => route === pathname;
+  const isActiveRoute = (route: string, exact = false) => {
+    if (exact) {
+      return route === pathname;
+    }
+    return pathname.includes(route);
+  };
 
   return (
     <Box
@@ -41,7 +46,7 @@ const NavList = (props: Props) => {
                         primary={option.title}
                         className="group-hover:text-white"
                       />
-                      {isActiveRoute(option.route) && (
+                      {isActiveRoute(option.route, option.route === '/') && (
                         <KeyboardDoubleArrowLeftIcon className="text-primary" />
                       )}
                     </div>
