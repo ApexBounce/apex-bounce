@@ -7,7 +7,7 @@ export default async function getAllRentalListings(): Promise<RentalListing[]> {
   category,
   title,
   description,
-  image,
+  images,
   price,
   available,
   features

@@ -82,15 +82,17 @@ export default async function RentalListings() {
               {group.items.map((item) => (
                 <Link key={item.title} href={`rentals/${item._id}`}>
                   <ImageListItem className="group w-[300px] max-w-[80vw]">
-                    <div className="relative overflow-hidden w-full h-[250px]">
-                      <Image
-                        src={`${sanityUrlFor(item.image).url()}`}
-                        alt={item.title}
-                        fill
-                        sizes="300px"
-                        className="object-cover transform transition duration-500 group-hover:scale-110"
-                      />
-                    </div>
+                    {item?.images?.length > 0 && (
+                      <div className="relative overflow-hidden w-full h-[250px]">
+                        <Image
+                          src={`${sanityUrlFor(item.images[0]?.asset).url()}`}
+                          alt={item.title}
+                          fill
+                          sizes="300px"
+                          className="object-cover transform transition duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                    )}
                     <ImageListItemBar
                       title={item.title}
                       position="below"

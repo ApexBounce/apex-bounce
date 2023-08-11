@@ -42,7 +42,14 @@ export type RentalListing = {
   category: string;
   title: string;
   description: string;
-  image: string;
+  images: Array<{
+    _key: string;
+    _type: 'image';
+    asset: {
+      _ref: string;
+      _type: 'reference';
+    };
+  }>;
   price: number;
   available: boolean;
   features: string[];

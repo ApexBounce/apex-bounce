@@ -7,7 +7,7 @@ export default async function getRentalDetails(
   const query = `*[_type == "rental" && _id == $id][0] {
     title,
     description,
-    image,
+    images,
     price,
     available,
     features

@@ -25,10 +25,11 @@ export default {
       description: 'A brief description of the rental',
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      description: 'Main image for the rental listing',
+      name: 'images',
+      title: 'Images',
+      type: 'array',
+      of: [{ type: 'image' }],
+      description: 'Images for the rental listing',
     },
     {
       name: 'price',
