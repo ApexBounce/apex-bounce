@@ -44,6 +44,24 @@ export default {
       description: 'Is this rental available for booking?',
     },
     {
+      name: 'booking',
+      title: 'Booking Information',
+      type: 'object',
+      fields: [
+        {
+          name: 'bookedFrom',
+          title: 'Booked From',
+          type: 'datetime',
+        },
+        {
+          name: 'bookedTo',
+          title: 'Booked To',
+          type: 'datetime',
+        },
+      ],
+      description: 'Booking details for the rental',
+    },
+    {
       name: 'features',
       title: 'Features',
       type: 'array',

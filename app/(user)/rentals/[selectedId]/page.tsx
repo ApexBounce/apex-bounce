@@ -1,10 +1,12 @@
 import getRentalDetails from '@/sanity/lib/getRentalDetails';
 import sanityUrlFor from '@/sanity/lib/sanityUrlFor';
 import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import ImageCarousel from '@/components/Carousels/ImageCarousel';
 import FeaturesBlock from '@/components/Feature/FeaturesBlock';
+import BookingForm from '@/components/Forms/BookingForm';
 
 async function getRentalData(id: string) {
   const rentalDetails = await getRentalDetails(id);
@@ -48,19 +50,29 @@ export default async function Page({ params }: Props) {
               </div>
             ))}
           </ImageCarousel>
-          <div className="prose lg:prose-xl">
-            <Typography
-              component="h1"
-              className="text-3xl lg:text-6xl text-center lg:text-start font-extrabold"
+          <div className="grid grid-flow-row gap-8">
+            <div className="prose lg:prose-xl">
+              <Typography
+                component="h1"
+                className="text-3xl lg:text-6xl text-center lg:text-start font-extrabold"
+              >
+                {data.title}
+              </Typography>
+              <Typography component="p">{data.description}</Typography>
+            </div>
+            <Button
+              href="/rentals/checkout"
+              size="large"
+              className="w-full lg:w-[200px] mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg uppercase"
             >
-              {data.title}
-            </Typography>
-            <Typography component="p" className="">
-              {data.description}
-            </Typography>
+              Book NOW
+            </Button>
           </div>
         </div>
         <FeaturesBlock features={data.features} />
+        <div className="pristine-dark-gradient py-12 px-4 lg:px-8">
+          <BookingForm rental={data} />
+        </div>
       </main>
     </>
   );
