@@ -61,7 +61,7 @@ export default async function Page({ params }: Props) {
               <Typography component="p">{data.description}</Typography>
             </div>
             <Button
-              href="/rentals/checkout"
+              href="#booking-form"
               size="large"
               className="w-full lg:w-[200px] mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg uppercase"
             >
@@ -70,7 +70,10 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
         <FeaturesBlock features={data.features} />
-        <div className="pristine-dark-gradient py-12 px-4 lg:px-8">
+        <div
+          id="booking-form"
+          className="pristine-dark-gradient grid items-center justify-center py-16 px-4 lg:px-8 shadow-lg"
+        >
           <BookingForm rental={data} />
         </div>
       </main>
