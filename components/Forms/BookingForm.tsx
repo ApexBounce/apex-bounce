@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { RentalListing } from '@/types';
-import DateRangePicker from '../Dates/DateRangePicker';
+import DateRangePicker, {
+  DateTimeRangeForm,
+  initialDateTimeFormForm,
+} from '../Dates/DateRangePicker';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
@@ -24,7 +27,7 @@ type Props = {
   rental: RentalListing;
 };
 
-export interface BookingFormContent {
+export interface BookingFormContent extends DateTimeRangeForm {
   firstName: string;
   lastName: string;
   email: string;
@@ -33,6 +36,7 @@ export interface BookingFormContent {
 
 const BookingForm = ({ rental }: Props) => {
   const initialForm = {
+    ...initialDateTimeFormForm,
     firstName: '',
     lastName: '',
     email: '',
@@ -52,6 +56,13 @@ const BookingForm = ({ rental }: Props) => {
     }));
   };
 
+  const handleDateTimeChange = (dateTimeRange: DateTimeRangeForm): void => {
+    setForm((previousFormValue) => ({
+      ...previousFormValue,
+      ...dateTimeRange,
+    }));
+  };
+
   const handleFormSubmit = (event: any): void => {
     event.preventDefault();
     onSubmit(form);
@@ -63,7 +74,8 @@ const BookingForm = ({ rental }: Props) => {
       isValidName(form.firstName) &&
       isValidName(form.lastName) &&
       isValidEmail(form.email) &&
-      isValidPhoneNumber(form.phoneNumber)
+      isValidPhoneNumber(form.phoneNumber) &&
+      form.isDateTimeRangeValid
     );
   };
 
@@ -95,9 +107,11 @@ const BookingForm = ({ rental }: Props) => {
           label="First Name"
           color="primary"
           required
+          placeholder="John"
           inputProps={nameInputProps}
           onChange={handleInputChange}
           error={!!form.firstName && !isValidName(form.firstName)}
+          helperText={`Must be between ${nameInputProps.minLength} and ${nameInputProps.maxLength} characters`}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -115,9 +129,11 @@ const BookingForm = ({ rental }: Props) => {
           label="Last Name"
           color="primary"
           required
+          placeholder="Smith"
           inputProps={nameInputProps}
           onChange={handleInputChange}
           error={!!form.lastName && !isValidName(form.lastName)}
+          helperText={`Must be between ${nameInputProps.minLength} and ${nameInputProps.maxLength} characters`}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -138,6 +154,7 @@ const BookingForm = ({ rental }: Props) => {
           inputProps={emailInputProps}
           error={!!form.email && !isValidEmail(form.email)}
           onChange={handleInputChange}
+          placeholder="captainJohnSmith@email.com"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -158,6 +175,7 @@ const BookingForm = ({ rental }: Props) => {
           inputProps={phoneNumberInputProps}
           onChange={handleInputChange}
           error={!!form.phoneNumber && !isValidPhoneNumber(form.phoneNumber)}
+          placeholder="(123)456-7890"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -166,14 +184,14 @@ const BookingForm = ({ rental }: Props) => {
             ),
           }}
         />
-        <DateRangePicker />
+        <DateRangePicker onChange={handleDateTimeChange} />
       </div>
       <div className="p-0">
         <Button
-          disabled={disabled || !isFormValid(form)}
+          disabled={!isFormValid(form)}
           onClick={(event) => handleFormSubmit(event)}
           size="large"
-          className="max-w-full w-72 mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg"
+          className="w-full lg:w-52 mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg"
         >
           Request Booking
         </Button>

@@ -63,7 +63,7 @@ export default async function Page({ params }: Props) {
             <Button
               href="#booking-form"
               size="large"
-              className="w-full lg:w-[200px] mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg uppercase"
+              className="w-full lg:w-52 mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg uppercase"
             >
               Book NOW
             </Button>
