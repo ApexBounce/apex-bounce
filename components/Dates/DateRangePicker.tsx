@@ -6,21 +6,17 @@ import CustomDateTimePicker from './DateTimePicker';
 import React from 'react';
 import dayjs from 'dayjs';
 import { Typography } from '@mui/material';
+import { DateTimeRangeForm } from '@/types';
 
 type Props = {
+  startDateTimeValue: string | dayjs.Dayjs | undefined;
+  endDateTimeValue: string | dayjs.Dayjs | undefined;
   onChange: Function;
 };
-
-export interface DateTimeRangeForm {
-  startDateTime: string | undefined;
-  endDateTime: string | undefined;
-  isDateTimeRangeValid: boolean;
-}
 
 export const initialDateTimeFormForm: DateTimeRangeForm = {
   startDateTime: '',
   endDateTime: '',
-  isDateTimeRangeValid: false,
 };
 
 const DateRangePicker = (props: Props) => {
@@ -87,10 +83,12 @@ const DateRangePicker = (props: Props) => {
         <div className="grid gap-4 grid-flow-row lg:grid-flow-col">
           <CustomDateTimePicker
             label="Start date/time"
+            value={props.startDateTimeValue}
             onChange={onStartDateChange}
           />
           <CustomDateTimePicker
             label="End Date/Time"
+            value={props.endDateTimeValue}
             onChange={onEndDateChange}
           />
         </div>

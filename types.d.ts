@@ -54,3 +54,17 @@ export type RentalListing = {
   available: boolean;
   features: string[];
 };
+
+export interface DateTimeRangeForm {
+  startDateTime: string | undefined;
+  endDateTime: string | undefined;
+  isDateTimeRangeValid?: boolean;
+}
+
+export interface BookingFormContent extends DateTimeRangeForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  additionalInfo: string;
+}
