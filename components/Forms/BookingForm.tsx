@@ -25,6 +25,9 @@ import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { READABLE_DATES_FORMAT } from '@/lib/Dates/Formats';
+import axios, { AxiosError } from 'axios';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '../Alerts/Alert';
 
 type Props = {
   rental: RentalListing;
@@ -40,9 +43,18 @@ const initialForm = {
   additionalInfo: '',
 };
 
+const initialCommonToastState = {
+  open: false,
+  success: true,
+  message: '',
+};
+
 const BookingForm = ({ rental }: Props) => {
-  const [disabled, setDisabled] = React.useState<boolean>(false);
+  const [requestPending, setRequestPending] = React.useState<boolean>(false);
   const [form, setForm] = React.useState<BookingFormContent>(initialForm);
+  const [toastState, setToastState] = React.useState<
+    typeof initialCommonToastState
+  >(initialCommonToastState);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -93,7 +105,28 @@ const BookingForm = ({ rental }: Props) => {
   };
 
   const onSubmit = (form: BookingFormContent): void => {
-    console.log({ form });
+    setToastState(initialCommonToastState);
+    setRequestPending(true);
+
+    axios
+      .post('/api/rentalRequest', form)
+      .then(() => {
+        setToastState({
+          open: true,
+          success: true,
+          message: "Success! We'll reach out to you soon!",
+        });
+        setForm(() => initialForm);
+        setRequestPending(false);
+      })
+      .catch((err: AxiosError) => {
+        setToastState({
+          open: true,
+          success: false,
+          message: 'Something went wrong. Please try again.',
+        });
+        setRequestPending(false);
+      });
   };
 
   return (
@@ -116,7 +149,7 @@ const BookingForm = ({ rental }: Props) => {
             id="firstName"
             name="firstName"
             value={form.firstName}
-            disabled={disabled}
+            disabled={requestPending}
             type="text"
             label="First Name"
             color="primary"
@@ -138,7 +171,7 @@ const BookingForm = ({ rental }: Props) => {
             id="lastName"
             name="lastName"
             value={form.lastName}
-            disabled={disabled}
+            disabled={requestPending}
             type="text"
             label="Last Name"
             color="primary"
@@ -160,7 +193,7 @@ const BookingForm = ({ rental }: Props) => {
             id="email"
             name="email"
             value={form.email}
-            disabled={disabled}
+            disabled={requestPending}
             type="email"
             label="Email"
             color="primary"
@@ -181,7 +214,7 @@ const BookingForm = ({ rental }: Props) => {
             id="phoneNumber"
             name="phoneNumber"
             value={form.phoneNumber}
-            disabled={disabled}
+            disabled={requestPending}
             type="tel"
             label="Phone Number"
             color="primary"
@@ -242,7 +275,7 @@ const BookingForm = ({ rental }: Props) => {
           value={form.additionalInfo}
           label="Additional Information"
           type="text"
-          disabled={disabled}
+          disabled={requestPending}
           color="primary"
           inputProps={additionalInfoInputProps}
           onChange={handleInputChange}
@@ -255,7 +288,8 @@ const BookingForm = ({ rental }: Props) => {
       </div>
       <div className="p-0">
         <Button
-          disabled={!isFormValid(form)}
+          type="submit"
+          disabled={requestPending || !isFormValid(form)}
           onClick={(event) => handleFormSubmit(event)}
           size="large"
           className="w-full lg:w-52 mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg"
@@ -263,6 +297,19 @@ const BookingForm = ({ rental }: Props) => {
           Request Booking
         </Button>
       </div>
+      <Snackbar
+        open={toastState.open}
+        autoHideDuration={6000}
+        onClose={() => setToastState(initialCommonToastState)}
+      >
+        <Alert
+          onClose={() => setToastState(initialCommonToastState)}
+          severity={toastState.success ? 'success' : 'error'}
+          sx={{ width: '100%' }}
+        >
+          {toastState.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
