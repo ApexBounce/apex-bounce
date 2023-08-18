@@ -1,15 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import { BookingFormContent, RentalListing } from '@/types';
+import { BookingFormContent, OrganizationData, RentalListing } from '@/types';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
 import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PersonIcon from '@mui/icons-material/Person';
-import Button from '@mui/material/Button';
 import {
   additionalInfoInputProps,
   emailInputProps,
@@ -25,18 +23,20 @@ import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { READABLE_DATES_FORMAT } from '@/lib/Dates/Formats';
-import axios, { AxiosError } from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '../Alerts/Alert';
+import { sendEmail } from '@/Actions/sendEmail';
+import RentalBookingSubmitButton from './RentalBookingSubmitButton';
 
 type Props = {
   rental: RentalListing;
+  orgInfo: OrganizationData;
 };
 
 const initialForm = {
   firstName: '',
   lastName: '',
-  email: '',
+  senderEmail: '',
   phoneNumber: '',
   startDateTime: '',
   endDateTime: '',
@@ -49,8 +49,7 @@ const initialCommonToastState = {
   message: '',
 };
 
-const BookingForm = ({ rental }: Props) => {
-  const [requestPending, setRequestPending] = React.useState<boolean>(false);
+const BookingForm = ({ rental, orgInfo }: Props) => {
   const [form, setForm] = React.useState<BookingFormContent>(initialForm);
   const [toastState, setToastState] = React.useState<
     typeof initialCommonToastState
@@ -88,51 +87,27 @@ const BookingForm = ({ rental }: Props) => {
     }
   };
 
-  const handleFormSubmit = (event: any): void => {
-    event.preventDefault();
-    onSubmit(form);
-    setForm(() => initialForm);
-  };
+  return (
+    <form
+      className="grid grid-flow-row gap-8 bg-white text-secondary rounded-md px-4 py-8 lg:p-8 max-w-4xl"
+      action={async (formData) => {
+        const { data, error } = await sendEmail(formData, rental, orgInfo);
 
-  const isFormValid = (form: BookingFormContent): boolean => {
-    return (
-      isValidName(form.firstName) &&
-      isValidName(form.lastName) &&
-      isValidEmail(form.email) &&
-      isValidPhoneNumber(form.phoneNumber) &&
-      isDateTimeRangeValid(form.startDateTime, form.endDateTime)
-    );
-  };
+        if (error) {
+          setToastState({
+            open: true,
+            success: false,
+            message: error,
+          });
+          return;
+        }
 
-  const onSubmit = (form: BookingFormContent): void => {
-    setToastState(initialCommonToastState);
-    setRequestPending(true);
-
-    axios
-      .post('/api/rentalRequest', form)
-      .then(() => {
         setToastState({
           open: true,
           success: true,
-          message: "Success! We'll reach out to you soon!",
+          message: 'Email sent successfully!',
         });
-        setForm(() => initialForm);
-        setRequestPending(false);
-      })
-      .catch((err: AxiosError) => {
-        setToastState({
-          open: true,
-          success: false,
-          message: 'Something went wrong. Please try again.',
-        });
-        setRequestPending(false);
-      });
-  };
-
-  return (
-    <Box
-      component="form"
-      className="grid grid-flow-row gap-8 bg-white text-secondary rounded-md px-4 py-8 lg:p-8 max-w-4xl"
+      }}
     >
       <Typography component="h2" className="prose-xl xl:prose-2xl">
         Booking Request for
@@ -149,7 +124,6 @@ const BookingForm = ({ rental }: Props) => {
             id="firstName"
             name="firstName"
             value={form.firstName}
-            disabled={requestPending}
             type="text"
             label="First Name"
             color="primary"
@@ -171,7 +145,6 @@ const BookingForm = ({ rental }: Props) => {
             id="lastName"
             name="lastName"
             value={form.lastName}
-            disabled={requestPending}
             type="text"
             label="Last Name"
             color="primary"
@@ -190,16 +163,15 @@ const BookingForm = ({ rental }: Props) => {
             }}
           />
           <TextField
-            id="email"
-            name="email"
-            value={form.email}
-            disabled={requestPending}
+            id="senderEmail"
+            name="senderEmail"
+            value={form.senderEmail}
             type="email"
             label="Email"
             color="primary"
             required
             inputProps={emailInputProps}
-            error={!!form.email && !isValidEmail(form.email)}
+            error={!!form.senderEmail && !isValidEmail(form.senderEmail)}
             onChange={handleInputChange}
             placeholder="captainJohnSmith@email.com"
             InputProps={{
@@ -214,7 +186,6 @@ const BookingForm = ({ rental }: Props) => {
             id="phoneNumber"
             name="phoneNumber"
             value={form.phoneNumber}
-            disabled={requestPending}
             type="tel"
             label="Phone Number"
             color="primary"
@@ -243,6 +214,8 @@ const BookingForm = ({ rental }: Props) => {
                 disablePast
                 slotProps={{
                   textField: {
+                    id: 'startDateTime',
+                    name: 'startDateTime',
                     required: true,
                   },
                 }}
@@ -255,6 +228,8 @@ const BookingForm = ({ rental }: Props) => {
                 disablePast
                 slotProps={{
                   textField: {
+                    id: 'endDateTime',
+                    name: 'endDateTime',
                     required: true,
                   },
                 }}
@@ -275,42 +250,40 @@ const BookingForm = ({ rental }: Props) => {
           value={form.additionalInfo}
           label="Additional Information"
           type="text"
-          disabled={requestPending}
           color="primary"
           inputProps={additionalInfoInputProps}
           onChange={handleInputChange}
           multiline
           rows={4}
           placeholder="Any additional comments or concerns..."
-          helperText={`${form.additionalInfo.length} / ${additionalInfoInputProps.maxLength}`}
-          error={!isValidAdditionalInfo(form.additionalInfo)}
+          helperText={`${form.additionalInfo?.length} / ${additionalInfoInputProps.maxLength}`}
+          error={
+            !!form.additionalInfo && !isValidAdditionalInfo(form.additionalInfo)
+          }
         />
       </div>
       <div className="p-0">
-        <Button
-          type="submit"
-          disabled={requestPending || !isFormValid(form)}
-          onClick={(event) => handleFormSubmit(event)}
-          size="large"
-          className="w-full lg:w-52 mx-auto lg:mx-0 text-white bg-primary hover:bg-accent hover:shadow-lg"
-        >
-          Request Booking
-        </Button>
+        <RentalBookingSubmitButton />
       </div>
       <Snackbar
         open={toastState.open}
         autoHideDuration={6000}
-        onClose={() => setToastState(initialCommonToastState)}
+        onClose={() =>
+          setToastState({
+            ...initialCommonToastState,
+            // prevents color change before close
+            success: toastState.success,
+          })
+        }
       >
         <Alert
-          onClose={() => setToastState(initialCommonToastState)}
           severity={toastState.success ? 'success' : 'error'}
           sx={{ width: '100%' }}
         >
           {toastState.message}
         </Alert>
       </Snackbar>
-    </Box>
+    </form>
   );
 };
 

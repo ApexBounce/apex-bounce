@@ -7,6 +7,9 @@ import Image from 'next/image';
 import ImageCarousel from '@/components/Carousels/ImageCarousel';
 import FeaturesBlock from '@/components/Feature/FeaturesBlock';
 import BookingForm from '@/components/Forms/BookingForm';
+import getOrganizationInfo from '@/sanity/lib/getOrganization';
+
+const orgInfo = await getOrganizationInfo();
 
 async function getRentalData(id: string) {
   const rentalDetails = await getRentalDetails(id);
@@ -21,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getRentalData(params.selectedId);
 
   return {
-    title: data.title,
-    description: `${data.title} rental details.`,
+    title: `${data.title} | ${orgInfo.name}`,
+    description: `${data.title} item rental details from ${orgInfo.name}.`,
   };
 }
 
@@ -74,7 +77,7 @@ export default async function Page({ params }: Props) {
           id="booking-form"
           className="pristine-dark-gradient grid items-center justify-center py-16 px-4 lg:px-8 shadow-lg"
         >
-          <BookingForm rental={data} />
+          <BookingForm rental={data} orgInfo={orgInfo} />
         </div>
       </main>
     </>
