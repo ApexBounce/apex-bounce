@@ -5,6 +5,7 @@ export default async function getRentalDetails(
   id: string
 ): Promise<RentalListing> {
   const query = `*[_type == "rental" && _id == $id][0] {
+    _id,
     title,
     description,
     images,

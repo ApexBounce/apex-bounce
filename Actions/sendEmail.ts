@@ -14,6 +14,7 @@ import {
 } from '@/lib/Validation/FormValidation';
 import RentalRequestForm from '@/email/RentalRequestForm';
 import { OrganizationData, RentalListing } from '@/types';
+import getRentalDetails from '@/sanity/lib/getRentalDetails';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const to = process.env.EMAIL_TO;
@@ -21,7 +22,7 @@ const from = process.env.EMAIL_FROM;
 
 export const sendEmail = async (
   formData: FormData,
-  rentalDetails: RentalListing,
+  rentalId: string,
   orgInfo: OrganizationData
 ) => {
   const firstName = formData.get('firstName');
@@ -71,6 +72,21 @@ export const sendEmail = async (
   if (!isDateTimeRangeValid(startDateTime as string, endDateTime as string)) {
     return {
       error: 'Invalid dates',
+    };
+  }
+
+  let rentalDetails: RentalListing | undefined;
+  if (rentalId && typeof rentalId === 'string') {
+    rentalDetails = await getRentalDetails(rentalId);
+
+    if (!rentalDetails?.available) {
+      return {
+        error: 'Item unavailable',
+      };
+    }
+  } else {
+    return {
+      error: 'Something went wrong',
     };
   }
 

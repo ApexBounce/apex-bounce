@@ -91,7 +91,7 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
     <form
       className="grid grid-flow-row gap-8 bg-white text-secondary rounded-md px-4 py-8 lg:p-8 max-w-4xl"
       action={async (formData) => {
-        const { data, error } = await sendEmail(formData, rental, orgInfo);
+        const { data, error } = await sendEmail(formData, rental._id, orgInfo);
 
         if (error) {
           setToastState({
@@ -105,7 +105,7 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
         setToastState({
           open: true,
           success: true,
-          message: 'Email sent successfully!',
+          message: 'Booking request sent successfully!',
         });
       }}
     >
