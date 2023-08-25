@@ -8,6 +8,7 @@ import ImageCarousel from '@/components/Carousels/ImageCarousel';
 import FeaturesBlock from '@/components/Feature/FeaturesBlock';
 import BookingForm from '@/components/Forms/BookingForm';
 import getOrganizationInfo from '@/sanity/lib/getOrganization';
+import BackToButton from '@/components/Navigation/BackToButton';
 
 const orgInfo = await getOrganizationInfo();
 
@@ -34,6 +35,11 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
+      <BackToButton
+        text="All Rentals"
+        route="/rentals"
+        className="sticky top-16 w-full bg-secondary/50 backdrop-blur text-base-100 p-2 z-10"
+      />
       <main className="bg-secondary">
         <div className="gradient-bg-vertical grid grid-flow-row lg:grid-flow-col gap-8 lg:gap-8 justify-center pb-8 pt-4 px-4 lg:px-8 lg:py-12">
           <ImageCarousel className="h-[284px] lg:h-[384px] w-[550px] max-w-[90vw] mx-auto">
