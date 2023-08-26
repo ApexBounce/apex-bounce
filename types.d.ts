@@ -65,3 +65,8 @@ export interface RentalBookingRequest extends BookingFormContent {
   rentalDetails: RentalListing;
   timestampMs?: number;
 }
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}

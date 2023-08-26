@@ -147,6 +147,14 @@ body {
     linear-gradient(90deg, rgb(17, 17, 17), rgb(66, 66, 66));
 }
 
+.dark-fade-bg {
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(71, 71, 71),
+    rgb(8, 8, 8)
+  );
+}
+
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

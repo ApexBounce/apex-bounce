@@ -50,7 +50,7 @@ export const APP_ROUTES: AppRoutes[] = [
     routes: [
       {
         title: 'FAQs',
-        route: '/faq',
+        route: '/faqs',
         icon: QuizIcon,
       },
       {
