@@ -7,7 +7,9 @@ import Image from 'next/image';
 import RentalsSummary from './RentalsSummary';
 
 const orgInfo = await getOrganizationInfo();
-const rentalListings = await getAllRentalListings();
+const rentalListings = await getAllRentalListings({
+  onlyAvailableItems: true,
+});
 
 export const metadata: Metadata = {
   title: orgInfo.name,

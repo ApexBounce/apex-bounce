@@ -1,8 +1,18 @@
 import { RentalListing } from '@/types';
 import { sanityClient } from './client';
 
-export default async function getAllRentalListings(): Promise<RentalListing[]> {
-  const query = `*[_type == "rental"] {
+type Props =
+  | {
+      onlyAvailableItems?: boolean;
+    }
+  | undefined;
+
+export default async function getAllRentalListings(
+  props?: Props
+): Promise<RentalListing[]> {
+  const query = `*[_type == "rental"${
+    props?.onlyAvailableItems ? ` && available == true` : ''
+  }] {
   _id,
   category,
   title,

@@ -13,7 +13,7 @@ type Props = {
 
 const RentalsSummary = ({ heading, rentalListings }: Props) => {
   return (
-    <section className="pristine-dark-gradient bg-fixed grid grid-flow-row gap-12 max-w-[100vw] items-center justify-center bg-secondary py-12 px-4 lg:px-8">
+    <section className="pristine-dark-gradient grid grid-flow-row gap-12 max-w-[100vw] items-center justify-center bg-secondary py-12 px-4 lg:px-8">
       <Typography
         component="h2"
         className="text-3xl lg:text-4xl font-bold text-gold"
@@ -28,17 +28,27 @@ const RentalsSummary = ({ heading, rentalListings }: Props) => {
           >
             {group.category}
           </Typography>
-          <ImageList
-            className="no-scrollbar overflow-scroll h-fit w-full"
-            sx={{ width: 500, height: 450 }}
-            gap={16}
-          >
-            {group.items.map((item) => (
-              <Link key={item.title} href={`rentals/${item._id}`}>
-                <RentalCard rentalListing={item} />
+          {group.items.length > 1 ? (
+            <ImageList
+              className="no-scrollbar overflow-scroll h-fit w-full"
+              sx={{ width: 500, height: 450 }}
+              gap={16}
+            >
+              {group.items.map((rentalItem) => (
+                <Link key={rentalItem.title} href={`rentals/${rentalItem._id}`}>
+                  <div className="w-[300px] max-w-[80vw]">
+                    <RentalCard rentalListing={rentalItem} />
+                  </div>
+                </Link>
+              ))}
+            </ImageList>
+          ) : (
+            <div className="w-full max-w-full md:max-w-[300px]">
+              <Link href={`rentals/${group.items[0]._id}`}>
+                <RentalCard rentalListing={group.items[0]} />
               </Link>
-            ))}
-          </ImageList>
+            </div>
+          )}
         </section>
       ))}
       <Link href={'rentals'}>

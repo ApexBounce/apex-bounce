@@ -10,7 +10,7 @@ type Props = {
 
 const RentalListItem = ({ rentalListing }: Props) => {
   return (
-    <ImageListItem className="group w-[300px] max-w-[80vw]">
+    <ImageListItem className="group w-full">
       {rentalListing?.images?.length > 0 && (
         <div className="relative overflow-hidden w-full h-[250px]">
           <Image

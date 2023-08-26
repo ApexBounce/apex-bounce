@@ -38,7 +38,7 @@ export default async function RentalListings() {
           </Typography>
         </Overlay>
       </div>
-      <main className="pristine-dark-gradient bg-fixed grid grid-flow-row gap-12 max-w-[100vw] justify-center bg-secondary py-12 lg:px-8">
+      <main className="pristine-dark-gradient grid grid-flow-row gap-12 max-w-[100vw] justify-center bg-secondary py-12 lg:px-8">
         <Typography
           component="h2"
           className="text-4xl lg:text-5xl font-bold px-4 lg:px-0 text-gold"
