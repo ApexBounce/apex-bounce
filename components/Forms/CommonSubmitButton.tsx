@@ -3,7 +3,7 @@ import { experimental_useFormStatus as useFormStatus } from 'react-dom';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const RentalBookingSubmitButton = () => {
+const CommonSubmitButton = () => {
   const { pending } = useFormStatus();
 
   return (
@@ -16,10 +16,10 @@ const RentalBookingSubmitButton = () => {
       {pending ? (
         <CircularProgress size="26.25px" style={{ color: 'gold' }} />
       ) : (
-        <span>Request Booking</span>
+        <span>Send It</span>
       )}
     </Button>
   );
 };
 
-export default RentalBookingSubmitButton;
+export default CommonSubmitButton;

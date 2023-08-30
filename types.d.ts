@@ -46,13 +46,7 @@ export type RentalListing = {
   features: string[];
 };
 
-export interface DateTimeRangeForm {
-  startDateTime: string | undefined;
-  endDateTime: string | undefined;
-  isDateTimeRangeValid?: boolean;
-}
-
-export interface BookingFormContent extends DateTimeRangeForm {
+export interface ContactUsFormContent {
   firstName: string;
   lastName: string;
   senderEmail: string;
@@ -60,9 +54,22 @@ export interface BookingFormContent extends DateTimeRangeForm {
   additionalInfo?: string | null;
 }
 
+export interface DateTimeRangeForm {
+  startDateTime: string | undefined;
+  endDateTime: string | undefined;
+  isDateTimeRangeValid?: boolean;
+}
+
+export type BookingFormContent = ContactUsFormContent & DateTimeRangeForm;
+
 export interface RentalBookingRequest extends BookingFormContent {
   orgInfo: OrganizationData;
   rentalDetails: RentalListing;
+  timestampMs?: number;
+}
+
+export interface ContactUsRequest extends ContactUsFormContent {
+  orgInfo: OrganizationData;
   timestampMs?: number;
 }
 

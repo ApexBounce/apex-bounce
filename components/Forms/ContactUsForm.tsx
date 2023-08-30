@@ -1,17 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import { BookingFormContent, OrganizationData, RentalListing } from '@/types';
+import { ContactUsFormContent, OrganizationData } from '@/types';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
-import { Typography } from '@mui/material';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import PersonIcon from '@mui/icons-material/Person';
 import {
   additionalInfoInputProps,
   emailInputProps,
-  isDateTimeRangeValid,
   isValidAdditionalInfo,
   isValidEmail,
   isValidName,
@@ -19,27 +17,20 @@ import {
   nameInputProps,
   phoneNumberInputProps,
 } from '@/lib/Validation/FormValidation';
-import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
-import { READABLE_DATES_FORMAT } from '@/lib/Dates/Formats';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '../Alerts/Alert';
-import { sendEmail } from '@/Actions/sendEmail';
-import RentalBookingSubmitButton from './CommonSubmitButton';
+import { sendContactUsEmail } from '@/Actions/sendContactUsEmail';
+import CommonSubmitButton from './CommonSubmitButton';
 
 type Props = {
-  rental: RentalListing;
   orgInfo: OrganizationData;
 };
 
-const initialForm = {
+const initialForm: ContactUsFormContent = {
   firstName: '',
   lastName: '',
   senderEmail: '',
   phoneNumber: '',
-  startDateTime: '',
-  endDateTime: '',
   additionalInfo: '',
 };
 
@@ -49,8 +40,8 @@ const initialCommonToastState = {
   message: '',
 };
 
-const BookingForm = ({ rental, orgInfo }: Props) => {
-  const [form, setForm] = React.useState<BookingFormContent>(initialForm);
+const ContactUsForm = ({ orgInfo }: Props) => {
+  const [form, setForm] = React.useState<ContactUsFormContent>(initialForm);
   const [toastState, setToastState] = React.useState<
     typeof initialCommonToastState
   >(initialCommonToastState);
@@ -65,33 +56,11 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
     }));
   };
 
-  const onStartDateChange = (value: any): void => {
-    const asDate = dayjs(value);
-    if (asDate.isValid()) {
-      const asDateString = asDate.format(READABLE_DATES_FORMAT);
-      setForm((previousFormValue) => ({
-        ...previousFormValue,
-        startDateTime: asDateString,
-      }));
-    }
-  };
-
-  const onEndDateChange = (value: any): void => {
-    const asDate = dayjs(value);
-    if (asDate.isValid()) {
-      const asDateString = asDate.format(READABLE_DATES_FORMAT);
-      setForm((previousFormValue) => ({
-        ...previousFormValue,
-        endDateTime: asDateString,
-      }));
-    }
-  };
-
   return (
     <form
-      className="grid grid-flow-row gap-8 bg-white text-secondary rounded-md px-4 py-8 lg:p-8 max-w-4xl"
+      className="grid grid-flow-row gap-8 bg-white text-secondary max-w-4xl"
       action={async (formData) => {
-        const { data, error } = await sendEmail(formData, rental._id, orgInfo);
+        const { data, error } = await sendContactUsEmail(formData, orgInfo);
 
         if (error) {
           setToastState({
@@ -107,19 +76,10 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
         setToastState({
           open: true,
           success: true,
-          message: 'Booking request sent successfully!',
+          message: 'Contact request sent successfully!',
         });
       }}
     >
-      <Typography component="h2" className="prose-xl xl:prose-2xl">
-        Booking Request for
-        <br />
-        <span className="font-bold">{rental.title}</span>
-      </Typography>
-      <Typography component="p" className="prose-sm xl:prose-lg">
-        Please fill out the form below to send a booking request and a staff
-        member will contact you shortly.
-      </Typography>
       <div className="grid grid-flow-row gap-8">
         <div className="grid grid-flow-row lg:grid-cols-2 gap-8">
           <TextField
@@ -205,47 +165,6 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
             }}
           />
         </div>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <div className="grid gap-2 grid-flow-row">
-            <div className="grid gap-8 grid-flow-row lg:grid-flow-col">
-              <DateTimePicker
-                label="Start Date/Time"
-                format={READABLE_DATES_FORMAT}
-                value={form.startDateTime}
-                onAccept={onStartDateChange}
-                disablePast
-                slotProps={{
-                  textField: {
-                    id: 'startDateTime',
-                    name: 'startDateTime',
-                    required: true,
-                  },
-                }}
-              />
-              <DateTimePicker
-                label="End Date/Time"
-                format={READABLE_DATES_FORMAT}
-                value={form.endDateTime}
-                onAccept={onEndDateChange}
-                disablePast
-                slotProps={{
-                  textField: {
-                    id: 'endDateTime',
-                    name: 'endDateTime',
-                    required: true,
-                  },
-                }}
-              />
-            </div>
-            {!!form.startDateTime &&
-              !!form.endDateTime &&
-              !isDateTimeRangeValid(form.startDateTime, form.endDateTime) && (
-                <Typography component="p" className="text-error text-sm">
-                  End Date must be after the Start Date
-                </Typography>
-              )}
-          </div>
-        </LocalizationProvider>
         <TextField
           id="additionalInfo"
           name="additionalInfo"
@@ -266,7 +185,7 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
         />
       </div>
       <div className="p-0">
-        <RentalBookingSubmitButton />
+        <CommonSubmitButton />
       </div>
       <Snackbar
         open={toastState.open}
@@ -290,4 +209,4 @@ const BookingForm = ({ rental, orgInfo }: Props) => {
   );
 };
 
-export default BookingForm;
+export default ContactUsForm;
