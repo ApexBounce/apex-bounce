@@ -66,12 +66,12 @@ export default async function FAQs() {
               key={`faq_${index + 1}`}
               className="grid grid-flow-row gap-8 w-full px-4"
             >
-              <div className="relative max-w-[80%] justify-self-end bg-secondary text-neutral rounded-xl p-4 shadow-lg">
-                <HelpIcon className="text-3xl absolute -top-3 -right-3" />
+              <div className="relative max-w-[80%] justify-self-start bg-secondary text-neutral rounded-xl p-4 shadow-lg">
+                <HelpIcon className="text-3xl absolute -top-3 -left-3" />
                 <Typography variant="h5">{faq.question}</Typography>
               </div>
-              <div className="relative items-center max-w-[80%] justify-self-start bg-accent text-neutral rounded-xl p-4 shadow-lg">
-                <CheckCircleIcon className="text-3xl absolute -top-3 -left-3" />
+              <div className="relative items-center max-w-[80%] justify-self-end bg-accent text-neutral rounded-xl p-4 shadow-lg">
+                <CheckCircleIcon className="text-3xl absolute -top-3 -right-3" />
                 <Typography variant="body1">{faq.answer}</Typography>
               </div>
             </section>

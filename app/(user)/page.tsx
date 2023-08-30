@@ -5,6 +5,7 @@ import { Typography } from '@mui/material';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import RentalsSummary from './RentalsSummary';
+import FaqsSummary from './FaqsSummary';
 
 const orgInfo = await getOrganizationInfo();
 const rentalListings = await getAllRentalListings({
@@ -42,6 +43,7 @@ export default async function Home() {
         heading={`See what ${orgInfo.name} has to offer`}
         rentalListings={rentalListings}
       />
+      <FaqsSummary />
     </>
   );
 }
