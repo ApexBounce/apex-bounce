@@ -18,29 +18,44 @@ export const metadata: Metadata = {
 
 export default async function FAQs() {
   return (
-    <div className="bg-white text-secondary">
-      <section className="max-w-4xl mx-auto pt-8 px-4 lg:px-0">
-        <Typography variant="h4" component="h1" className="mb-4 font-bold">
-          Got Questions?
-          <br />
-          We&apos;ve got answers!
-        </Typography>
-        <Typography variant="body1">
-          We totally get it—sometimes you&apos;ve got questions, and we&apos;ve
-          got answers.
-          <br />
-          Still don&apos;t see what you&apos;re looking for?{' '}
-          <Link
-            href="/contact-us"
-            className="underline underline-offset-2 decoration-primary"
+    <div className="bg-white text-light-gray">
+      <section className="grid items-center min-h-[60vh] max-w-4xl mx-auto pt-8 px-4 lg:px-0">
+        <div className="grid">
+          <Typography
+            variant="h4"
+            component="h1"
+            className="mb-4 text-4xl lg:text-7xl"
           >
-            Contact us!
-          </Link>
-        </Typography>
+            Got Questions?
+          </Typography>
+          <Typography
+            variant="h4"
+            component="h2"
+            className="mb-4 text-6xl lg:text-8xl font-bold text-secondary drop-shadow-2xl"
+          >
+            We&apos;ve got answers!
+          </Typography>
+          <Typography variant="body1" className="my-4">
+            We totally get it—sometimes you&apos;ve got questions, and
+            we&apos;ve got answers.
+            <br />
+            Please checkout our FAQs to find answers to our most frequently
+            asked questions.
+          </Typography>
+          <Typography variant="body1" className="my-4">
+            Still don&apos;t see what you&apos;re looking for?{' '}
+            <Link
+              href="/contact-us"
+              className="underline underline-offset-2 decoration-primary"
+            >
+              Contact us!
+            </Link>
+          </Typography>
+        </div>
       </section>
       <main className="pt-12 lg:py-12">
         <Paper
-          className="dark-fade-bg grid grid-flow-row gap-8 max-w-4xl mx-auto pb-8 rounded-none lg:rounded-lg"
+          className="dark-bubble-flare-bg grid grid-flow-row gap-8 max-w-4xl mx-auto pb-8 rounded-none lg:rounded-lg"
           elevation={8}
         >
           <div className="w-full bg-secondary shadow-lg text-gold p-4 lg:rounded-t-lg text-center">
@@ -52,11 +67,11 @@ export default async function FAQs() {
               className="grid grid-flow-row gap-8 w-full px-4"
             >
               <div className="relative max-w-[80%] justify-self-end bg-secondary text-neutral rounded-xl p-4 shadow-lg">
-                <HelpIcon className="text-3xl absolute -top-3 -right-2" />
+                <HelpIcon className="text-3xl absolute -top-3 -right-3" />
                 <Typography variant="h5">{faq.question}</Typography>
               </div>
               <div className="relative items-center max-w-[80%] justify-self-start bg-accent text-neutral rounded-xl p-4 shadow-lg">
-                <CheckCircleIcon className="text-3xl absolute -top-3 -left-2" />
+                <CheckCircleIcon className="text-3xl absolute -top-3 -left-3" />
                 <Typography variant="body1">{faq.answer}</Typography>
               </div>
             </section>
