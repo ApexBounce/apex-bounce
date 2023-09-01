@@ -53,7 +53,7 @@ export default async function ContactUs() {
           >
             We would love to hear from you!
           </Typography>
-          <Typography variant="body1" className="text-light-gray">
+          <Typography variant="body1" className="text-gray">
             Please fill out the form and we will get back to you as soon as
             possible!
           </Typography>

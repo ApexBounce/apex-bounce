@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default async function FAQs() {
   return (
-    <div className="bg-white text-light-gray">
+    <div className="bg-white text-gray">
       <section className="grid items-center min-h-[60vh] max-w-4xl mx-auto pt-8 px-4 lg:px-0">
         <div className="grid">
           <Typography
