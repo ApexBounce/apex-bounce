@@ -77,3 +77,25 @@ export interface FAQ {
   question: string;
   answer: string;
 }
+
+export interface AboutUsContent {
+  sectionTitle: string;
+  sectionText: string;
+  sectionImage?: {
+    src: string;
+  };
+}
+
+export interface StaffMember {
+  name: string;
+  positionTitle: string;
+  description: string;
+  image: {
+    src: string;
+  };
+}
+
+export interface BusinessValue {
+  name: string;
+  description: string;
+}
