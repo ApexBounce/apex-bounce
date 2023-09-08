@@ -1,5 +1,5 @@
 import sanityUrlFor from '@/sanity/lib/sanityUrlFor';
-import { RentalListing } from '@/types';
+import { RentalListing } from '@/app/_types';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Image from 'next/image';

@@ -4,8 +4,8 @@ import getAllRentalListings from '@/sanity/lib/getRentalListings';
 import { Typography } from '@mui/material';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import RentalsSummary from './RentalsSummary';
-import FaqsSummary from './FaqsSummary';
+import RentalsSummary from '@/components/Rentals/RentalsSummary';
+import FaqsSummary from '@/components/FAQs/FaqsSummary';
 
 const orgInfo = await getOrganizationInfo();
 const rentalListings = await getAllRentalListings({

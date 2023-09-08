@@ -1,9 +1,9 @@
 import ImageList from '@mui/material/ImageList';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import { groupRentalsByCategory } from '@/lib/utils';
-import { RentalListing } from '@/types';
-import RentalCard from './rentals/RentalListItem';
+import { groupRentalsByCategory } from '@/utils/groupRentalsByCategory';
+import { RentalListing } from '@/app/_types';
+import RentalCard from '@/components/Rentals/RentalListItem';
 import Button from '@mui/material/Button';
 
 type Props = {

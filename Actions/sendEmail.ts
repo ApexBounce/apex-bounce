@@ -12,8 +12,8 @@ import {
   nameInputProps,
   validateString,
 } from '@/lib/Validation/FormValidation';
-import RentalRequestForm from '@/email/RentalRequestForm';
-import { OrganizationData, RentalListing } from '@/types';
+import RentalRequestForm from '@/components/email/RentalRequestForm';
+import { OrganizationData, RentalListing } from '@/app/_types';
 import getRentalDetails from '@/sanity/lib/getRentalDetails';
 
 const resend = new Resend(process.env.RESEND_API_KEY);

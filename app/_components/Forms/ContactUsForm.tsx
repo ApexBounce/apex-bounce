@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { ContactUsFormContent, OrganizationData } from '@/types';
+import { ContactUsFormContent, OrganizationData } from '@/app/_types';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';

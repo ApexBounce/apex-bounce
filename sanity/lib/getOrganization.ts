@@ -1,4 +1,4 @@
-import { OrganizationData } from '@/types';
+import { OrganizationData } from '@/app/_types';
 import { sanityClient } from './client';
 
 export default async function getOrganizationInfo(): Promise<OrganizationData> {

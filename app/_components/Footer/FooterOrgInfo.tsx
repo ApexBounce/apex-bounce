@@ -1,4 +1,4 @@
-import { OrganizationData } from '@/types';
+import { OrganizationData } from '@/app/_types';
 import { Typography } from '@mui/material';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import CallIcon from '@mui/icons-material/Call';

@@ -11,7 +11,7 @@ import {
   Text,
 } from '@react-email/components';
 import { Tailwind } from '@react-email/tailwind';
-import { RentalBookingRequest } from '@/types';
+import { RentalBookingRequest } from '@/app/_types';
 
 export default function RentalRequestForm(props: RentalBookingRequest) {
   return (
@@ -51,7 +51,7 @@ export default function RentalRequestForm(props: RentalBookingRequest) {
                 </Text>
               )}
               <Hr />
-              <Text>The sender's email is: {props.senderEmail}</Text>
+              <Text>The sender&apos;s email is: {props.senderEmail}</Text>
             </Section>
           </Container>
         </Body>

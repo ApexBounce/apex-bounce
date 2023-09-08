@@ -1,4 +1,4 @@
-import { StaffMember } from '@/types';
+import { StaffMember } from '@/app/_types';
 import { sanityClient } from './client';
 
 export default async function getStaffMembers(): Promise<StaffMember[]> {

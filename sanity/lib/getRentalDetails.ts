@@ -1,4 +1,4 @@
-import { RentalListing } from '@/types';
+import { RentalListing } from '@/app/_types';
 import { sanityClient } from './client';
 
 export default async function getRentalDetails(

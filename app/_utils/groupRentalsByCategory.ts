@@ -1,4 +1,4 @@
-import { RentalListing } from '@/types';
+import { RentalListing } from '@/app/_types';
 
 export const groupRentalsByCategory = (
   items: RentalListing[]

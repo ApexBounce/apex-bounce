@@ -1,4 +1,4 @@
-import { AboutUsContent } from '@/types';
+import { AboutUsContent } from '@/app/_types';
 import { sanityClient } from './client';
 
 export default async function getAboutUsContent(): Promise<AboutUsContent[]> {

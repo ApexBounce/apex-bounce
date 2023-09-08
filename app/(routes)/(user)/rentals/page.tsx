@@ -1,5 +1,5 @@
 import Overlay from '@/components/Overlay/Overlay';
-import { groupRentalsByCategory } from '@/lib/utils';
+import { groupRentalsByCategory } from '@/utils/groupRentalsByCategory';
 import getOrganizationInfo from '@/sanity/lib/getOrganization';
 import getAllRentalListings from '@/sanity/lib/getRentalListings';
 import sanityUrlFor from '@/sanity/lib/sanityUrlFor';

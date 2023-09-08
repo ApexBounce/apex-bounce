@@ -1,4 +1,4 @@
-import { OrganizationData } from '@/types';
+import { OrganizationData } from '@/app/_types';
 import FooterOrgInfo from './FooterOrgInfo';
 import FooterNav from './FooterNav';
 

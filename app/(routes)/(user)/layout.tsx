@@ -1,4 +1,4 @@
-import '../globals.css';
+import '../../globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@fontsource/roboto/300.css';
@@ -9,7 +9,7 @@ import Navbar from '@/components/Navigation/ElevateNavbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import getOrganizationInfo from '@/sanity/lib/getOrganization';
 import Footer from '@/components/Footer/Footer';
-import ScrollToTop from '@/app/(user)/ScrollToTop';
+import ScrollToTop from '@/components/Scroll/ScrollToTop';
 
 const inter = Inter({ subsets: ['latin'] });
 

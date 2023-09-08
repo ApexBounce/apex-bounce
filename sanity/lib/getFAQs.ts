@@ -1,4 +1,4 @@
-import { FAQ } from '@/types';
+import { FAQ } from '@/app/_types';
 import { sanityClient } from './client';
 
 export default async function getFAQs(): Promise<FAQ[]> {

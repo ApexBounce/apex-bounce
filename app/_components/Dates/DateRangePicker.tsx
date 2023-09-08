@@ -6,7 +6,7 @@ import CustomDateTimePicker from './DateTimePicker';
 import React from 'react';
 import dayjs from 'dayjs';
 import { Typography } from '@mui/material';
-import { DateTimeRangeForm } from '@/types';
+import { DateTimeRangeForm } from '@/app/_types';
 
 type Props = {
   startDateTimeValue: string | dayjs.Dayjs | undefined;

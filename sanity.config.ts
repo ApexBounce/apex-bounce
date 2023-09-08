@@ -10,7 +10,7 @@ import { deskTool } from 'sanity/desk';
 import { apiVersion, dataset, projectId } from './sanity/env.local';
 import { schema } from './sanity/schema';
 import { myTheme } from './theme';
-import StudioNavbar from './components/Studio/StudioNavbar';
+import StudioNavbar from '@/components/Studio/StudioNavbar';
 
 export default defineConfig({
   basePath: '/studio',

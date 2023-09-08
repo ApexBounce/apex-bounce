@@ -11,7 +11,7 @@ import {
   Text,
 } from '@react-email/components';
 import { Tailwind } from '@react-email/tailwind';
-import { ContactUsRequest } from '@/types';
+import { ContactUsRequest } from '@/app/_types';
 
 export default function ContactUsForm(props: ContactUsRequest) {
   return (
@@ -39,7 +39,7 @@ export default function ContactUsForm(props: ContactUsRequest) {
                 </Text>
               )}
               <Hr />
-              <Text>The sender's email is: {props.senderEmail}</Text>
+              <Text>The sender&apos;s email is: {props.senderEmail}</Text>
             </Section>
           </Container>
         </Body>

@@ -1,7 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { BookingFormContent, OrganizationData, RentalListing } from '@/types';
+import {
+  BookingFormContent,
+  OrganizationData,
+  RentalListing,
+} from '@/app/_types';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';

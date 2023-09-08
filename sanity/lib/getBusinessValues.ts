@@ -1,4 +1,4 @@
-import { BusinessValue } from '@/types';
+import { BusinessValue } from '@/app/_types';
 import { sanityClient } from './client';
 
 export default async function getBusinessValues(): Promise<BusinessValue[]> {
