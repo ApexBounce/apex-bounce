@@ -6,7 +6,9 @@ import Overlay from '@/components/Overlay/Overlay';
 import getAboutUsContent from '@/sanity/lib/getAboutUsContent';
 import getStaffMembers from '@/sanity/lib/getStaffMembers';
 import getBusinessValues from '@/sanity/lib/getBusinessValues';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import AboutUsContentSection from '@/app/_components/AboutUs/AboutUsContentSection';
+import AboutUsValuesSection from '@/app/_components/AboutUs/AboutUsValuesSection';
+import AboutUsStaffSection from '@/app/_components/AboutUs/AboutUsStaffSection';
 
 const orgInfo = await getOrganizationInfo();
 const aboutUsContent = await getAboutUsContent();
@@ -25,7 +27,7 @@ export default async function AboutUs() {
     <div className="bg-white">
       <div className="relative grid h-[33dvh] lg:h-[75dvh]">
         <Image
-          src={'/images/contact_us_main.jpg'}
+          src={'/images/about_us_main.jpg'}
           alt="Kids playing on an inflatable"
           fill
           priority
@@ -51,49 +53,15 @@ export default async function AboutUs() {
       <div className="gradient-bg-vertical px-4 py-12 lg:px-8">
         <main className="grid grid-flow-row gap-4 max-w-4xl mx-auto">
           {aboutUsContent.map((section, index) => (
-            <section
-              key={`about_section_${index + 1}`}
-              className="prose lg:prose-lg whitespace-pre-wrap"
-            >
-              <Typography
-                component="h2"
-                className="text-4xl lg:text-5xl text-secondary underline underline-offset-4 decoration-primary"
-              >
-                {section.sectionTitle}
-              </Typography>
-              <Typography className="text-gray">
-                {section.sectionText}
-              </Typography>
-            </section>
+            <AboutUsContentSection
+              key={`about_us_content_${index + 1}`}
+              content={section}
+            />
           ))}
         </main>
       </div>
-      <section className="bg-light-gray px-4 py-12 lg:px-8">
-        <div className="grid grid-flow-row gap-4 max-w-4xl mx-auto">
-          <div className="prose lg:prose-lg whitespace-pre-wrap">
-            <Typography
-              component="h2"
-              className="text-4xl lg:text-5xl text-secondary underline underline-offset-4 decoration-primary"
-            >
-              Our Values
-            </Typography>
-            {businessValues.map((value, index) => (
-              <section key={`values_section_${index + 1}`}>
-                <div className="grid grid-flow-col gap-2 items-center w-fit">
-                  <FavoriteIcon className="text-primary" />
-                  <Typography
-                    component="h3"
-                    className="text-2xl lg:text-4xl text-gray !m-0"
-                  >
-                    {value.name}
-                  </Typography>
-                </div>
-                <Typography>{value.description}</Typography>
-              </section>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AboutUsValuesSection businessValues={businessValues} />
+      <AboutUsStaffSection staff={staffMembers} />
     </div>
   );
 }
