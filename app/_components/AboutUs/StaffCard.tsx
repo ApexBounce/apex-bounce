@@ -11,18 +11,15 @@ type Props = {
 
 const StaffCard = ({ member }: Props) => {
   return (
-    <div className="grid lg:grid-flow-col bg-white rounded-md shadow-xl">
-      <Card
-        sx={{ maxWidth: 345 }}
-        className="relative rounded-b-none lg:rounded-l-md lg:rounded-r-none shadow-none"
-      >
-        <div className="relative h-full min-h-[345px] w-[345px]">
+    <div className="grid sm:grid-flow-col bg-white rounded-md shadow-xl">
+      <Card className="relative rounded-b-none sm:rounded-l-md sm:rounded-r-none shadow-none">
+        <div className="relative h-full min-h-[345px] w-full min-w-[345px]">
           <Image
             src={`${sanityUrlFor(member.image).url()}`}
             alt={member.name}
             fill
             priority
-            className="z-0 object-cover"
+            className="z-0 object-cover object-center"
           />
           <div className="absolute bottom-0 left-0 right-0 h-[88px] grid items-center">
             <Overlay>
