@@ -9,6 +9,13 @@ export default {
       type: 'string',
     },
     {
+      name: 'isSummary',
+      title: 'Is Summary',
+      type: 'boolean',
+      description:
+        'Check this if the section is a summary. This content will appear on the Home page.',
+    },
+    {
       name: 'sectionText',
       title: 'Section Text',
       type: 'text',

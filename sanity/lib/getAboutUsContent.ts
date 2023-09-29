@@ -1,13 +1,22 @@
 import { AboutUsContent } from '@/app/_types';
 import { sanityClient } from './client';
 
-export default async function getAboutUsContent(): Promise<AboutUsContent[]> {
-  const query = `*[_type == "aboutUsSection"] {
+type Props =
+  | {
+      summaryOnly?: boolean;
+    }
+  | undefined;
+
+export default async function getAboutUsContent(
+  props?: Props
+): Promise<AboutUsContent[]> {
+  const query = `*[_type == "aboutUsSection" && isSummary == $summaryOnly] {
     _id,
     sectionText,
     sectionTitle,
     sectionImage,
     }`;
-  const aboutUsContent = await sanityClient.fetch(query);
+  const params = { summaryOnly: props?.summaryOnly ?? false };
+  const aboutUsContent = await sanityClient.fetch(query, params);
   return aboutUsContent;
 }

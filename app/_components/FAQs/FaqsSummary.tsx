@@ -8,7 +8,7 @@ const FaqsSummary = () => {
     <section className="relative grid bg-[url('/images/faqs_summary.jpg')] bg-cover bg-center bg-no-repeat w-full h-[450px] lg:h-[700px] text-white">
       <Overlay>
         <div className="grid self-center text-center gap-2 lg:gap-4 p-4 lg:p-8">
-          <Typography variant="h4" className="text-3xl lg:text-5xl">
+          <Typography variant="h2" className="text-3xl lg:text-5xl">
             Have Questions?
           </Typography>
           <Typography variant="body1" className="mb-4 text-neutral">

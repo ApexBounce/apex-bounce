@@ -16,7 +16,7 @@ const RentalsSummary = ({ heading, rentalListings }: Props) => {
     <section className="pristine-dark-gradient grid grid-flow-row gap-12 max-w-[100vw] items-center justify-center bg-secondary py-12 px-4 lg:px-8">
       <Typography
         component="h2"
-        className="text-3xl lg:text-4xl font-bold text-gold"
+        className="text-3xl lg:text-5xl font-bold text-gold"
       >
         {heading}
       </Typography>
