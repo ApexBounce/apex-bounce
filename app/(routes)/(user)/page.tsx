@@ -7,15 +7,13 @@ import Image from 'next/image';
 import RentalsSummary from '@/components/Rentals/RentalsSummary';
 import FaqsSummary from '@/components/FAQs/FaqsSummary';
 import AboutUsSummary from '@/app/_components/AboutUs/AboutUsSummary';
-import getAboutUsContent from '@/sanity/lib/getAboutUsContent';
+import getAboutUsSummary from '@/sanity/lib/getAboutUsSummary';
 
 const orgInfo = await getOrganizationInfo();
 const rentalListings = await getAllRentalListings({
   onlyAvailableItems: true,
 });
-const aboutUsSummary = await getAboutUsContent({
-  summaryOnly: true,
-});
+const aboutUsSummary = await getAboutUsSummary();
 
 export const metadata: Metadata = {
   title: orgInfo.name,
@@ -44,7 +42,7 @@ export default async function Home() {
           </Overlay>
         </div>
       </main>
-      <AboutUsSummary {...aboutUsSummary[0]} />
+      <AboutUsSummary {...aboutUsSummary} />
       <RentalsSummary
         heading={`See what ${orgInfo.name} has to offer`}
         rentalListings={rentalListings}
