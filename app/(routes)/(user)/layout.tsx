@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import getOrganizationInfo from '@/sanity/lib/getOrganization';
 import Footer from '@/components/Footer/Footer';
 import ScrollToTop from '@/components/Scroll/ScrollToTop';
-import { MuiSetup } from './_mui-setup';
+import MuiSetup from '@/components/MUI/MuiSetup';
 
 const font = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 

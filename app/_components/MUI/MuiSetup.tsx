@@ -14,10 +14,12 @@ const theme = createTheme({
   },
 });
 
-export const MuiSetup = ({ children }: Props) => {
+const MuiSetup = ({ children }: Props) => {
   return (
     <>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </>
   );
 };
+
+export default MuiSetup;
