@@ -6,6 +6,9 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      montserrat: ['var(--font-montserrat)'],
+    },
     colors: {
       primary: '#C10206',
       secondary: '#211D21',

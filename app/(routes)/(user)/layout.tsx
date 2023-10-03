@@ -1,17 +1,14 @@
 import '../../globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import { Montserrat } from 'next/font/google';
 import Navbar from '@/components/Navigation/ElevateNavbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import getOrganizationInfo from '@/sanity/lib/getOrganization';
 import Footer from '@/components/Footer/Footer';
 import ScrollToTop from '@/components/Scroll/ScrollToTop';
+import { MuiSetup } from './_mui-setup';
 
-const inter = Inter({ subsets: ['latin'] });
+const font = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 const orgInfo = await getOrganizationInfo();
 
@@ -26,13 +23,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <body className={`${inter.className} bg-secondary`}>
+    <html
+      lang="en"
+      className={`${font.variable}`}
+      style={{ scrollBehavior: 'smooth' }}
+    >
+      <body className={`bg-secondary`}>
         <CssBaseline />
         <ScrollToTop />
-        <Navbar text={orgInfo.name} />
-        {children}
-        <Footer organizationData={orgInfo} />
+        <MuiSetup>
+          <Navbar text={orgInfo.name} />
+          {children}
+          <Footer organizationData={orgInfo} />
+        </MuiSetup>
       </body>
     </html>
   );
