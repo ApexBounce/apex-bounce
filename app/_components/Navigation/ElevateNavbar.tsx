@@ -2,7 +2,6 @@
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
 import { cloneElement, useState } from 'react';
@@ -11,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import NavList from './NavList';
 import Link from 'next/link';
+import Avatar from '@mui/material/Avatar';
 
 interface Props {
   children: React.ReactElement;
@@ -42,9 +42,11 @@ export default function ElevateAppBar(props: NavbarProps) {
         <AppBar className="sticky z-[1201] gradient-bg text-base-100">
           <Toolbar className="grid grid-flow-col h-16 justify-between uppercase">
             <Link href="/">
-              <Typography variant="h6" component="div">
-                {props.text}
-              </Typography>
+              <Avatar
+                alt="Logo"
+                src="/images/logo.jpeg"
+                className="h-14 w-14 shadow-lg"
+              />
             </Link>
             <IconButton
               onClick={() => toggleDrawer(!isOpen)}
