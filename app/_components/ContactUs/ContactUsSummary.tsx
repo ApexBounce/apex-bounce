@@ -13,8 +13,8 @@ const ContactUsSummary = () => {
       </Typography>
       <Typography className="prose xl:prose-xl text-light-gray whitespace-pre-wrap">
         Have a question or ready to plan your next event? Contact us today and
-        let's make your celebration unforgettable! Our friendly team is here to
-        assist you with all your party needs. Get in touch now.
+        let&apos;s make your celebration unforgettable! Our friendly team is
+        here to assist you with all your party needs. Get in touch now.
       </Typography>
       <Link href="contact-us">
         <Button
