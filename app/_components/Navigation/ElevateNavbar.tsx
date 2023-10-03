@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import NavList from './NavList';
 import Link from 'next/link';
-import Avatar from '@mui/material/Avatar';
+import Image from 'next/image';
 
 interface Props {
   children: React.ReactElement;
@@ -42,10 +42,12 @@ export default function ElevateAppBar(props: NavbarProps) {
         <AppBar className="sticky z-[1201] gradient-bg text-base-100">
           <Toolbar className="grid grid-flow-col h-16 justify-between uppercase">
             <Link href="/">
-              <Avatar
+              <Image
+                src="/icon.ico"
+                width={56}
+                height={56}
                 alt="Logo"
-                src="/images/logo.jpeg"
-                className="h-14 w-14 shadow-lg"
+                priority
               />
             </Link>
             <IconButton
