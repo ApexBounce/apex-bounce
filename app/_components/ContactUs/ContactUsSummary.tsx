@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const ContactUsSummary = () => {
   return (
-    <section className="grid grid-flow-row gap-12 items-center justify-center max-w-[100vw] bg-secondary py-12 px-4 lg:px-8">
+    <section className="grid grid-flow-row gap-12 items-center justify-center max-w-[100vw] bg-black py-12 px-4 lg:px-8">
       <Typography
         component="h2"
         className="prose xl:prose-xl text-3xl lg:text-5xl font-bold text-gold flex"

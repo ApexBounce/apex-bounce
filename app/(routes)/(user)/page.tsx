@@ -43,11 +43,11 @@ export default async function Home() {
           </Overlay>
         </div>
       </main>
-      <AboutUsSummary {...aboutUsSummary} />
       <RentalsSummary
         heading={`See what ${orgInfo.name} has to offer`}
         rentalListings={rentalListings}
       />
+      <AboutUsSummary {...aboutUsSummary} />
       <ContactUsSummary />
       <FaqsSummary />
     </>

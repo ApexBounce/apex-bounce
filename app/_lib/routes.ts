@@ -3,7 +3,6 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import InfoIcon from '@mui/icons-material/Info';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import QuizIcon from '@mui/icons-material/Quiz';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import HomeIcon from '@mui/icons-material/Home';
 
@@ -46,9 +45,9 @@ export const APP_ROUTES: AppRoutes[] = [
         icon: InfoIcon,
       },
       {
-        title: 'Event Planning Tips',
-        route: '/event-planning-tips',
-        icon: EventAvailableIcon,
+        title: 'Contact Us',
+        route: '/contact-us',
+        icon: ConnectWithoutContactIcon,
       },
     ],
   },
@@ -59,11 +58,6 @@ export const APP_ROUTES: AppRoutes[] = [
         title: 'FAQs',
         route: '/faqs',
         icon: QuizIcon,
-      },
-      {
-        title: 'Contact Us',
-        route: '/contact-us',
-        icon: ConnectWithoutContactIcon,
       },
     ],
   },
